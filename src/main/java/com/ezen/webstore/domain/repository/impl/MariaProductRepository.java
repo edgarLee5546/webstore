@@ -43,4 +43,15 @@ public class MariaProductRepository implements ProductRepository {
 			return product;
 		}
 	}
+
+	@Override
+	public int updateStock(String productId, long noOfUnits) {
+		String SQL = "UPDATE PRODUCTS SET " + "UNITS_IN_STOCK = :unitsInStock WHERE ID = :id";
+		Map<String, Object> params = new HashMap<String, Object>();
+		params.put("id", productId);
+		params.put("unitsInStock", noOfUnits);
+
+		return jdbcTemplate.update(SQL, params);
+	}
+
 }

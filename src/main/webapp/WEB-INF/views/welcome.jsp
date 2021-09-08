@@ -15,6 +15,8 @@
 	<div class="jumbotron">
 		<h1>${greeting}</h1>
 		<p>${tagline}</p>
+		<p> http://localhost:8080/webstore/update/stock </p>>
+			재고가 500 미만인 상품에 대해 재고 1000 증가
 	</div>
 </body>
 </html>
