@@ -3,12 +3,11 @@ package com.ezen.webstore.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
+import java.util.Objects;
 
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode
-@NoArgsConstructor
 public class Product implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private String productId;
@@ -27,6 +26,33 @@ public class Product implements Serializable {
 		this.productId = productId;
 		this.name = name;
 		this.setUnitPrice(unitPrice);
+	}
+
+	public Product() {
+		super();
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(category, condition, description, discontinued, manufacturer, name, productId, unitPrice,
+				unitPriceStr, unitsInOrder, unitsInStock);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		return Objects.equals(category, other.category) && Objects.equals(condition, other.condition)
+				&& Objects.equals(description, other.description) && discontinued == other.discontinued
+				&& Objects.equals(manufacturer, other.manufacturer) && Objects.equals(name, other.name)
+				&& Objects.equals(productId, other.productId) && Objects.equals(unitPrice, other.unitPrice)
+				&& Objects.equals(unitPriceStr, other.unitPriceStr) && unitsInOrder == other.unitsInOrder
+				&& unitsInStock == other.unitsInStock;
 	}
 
 	public void setUnitPrice(BigDecimal unitPrice) {
