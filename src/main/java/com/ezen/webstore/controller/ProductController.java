@@ -6,15 +6,27 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.ezen.webstore.domain.repository.ProductRepository;
+import com.ezen.webstore.service.ProductService;
 
 @Controller
 public class ProductController {
 	@Autowired
 	private ProductRepository productRepository;
 
+	@Autowired
+	private ProductService productService;
+
+	@RequestMapping("/update/stock")
+	public String updateAllStock(Model model) {
+		int rc = productService.updateAllStock();
+		System.out.println("update count: " + rc);
+		return "redirect:/products";
+	}
+
 	@RequestMapping("/products")
 	public String list(Model model) {
 		model.addAttribute("products", productRepository.getAllProducts());
 		return "products";
+
 	}
 }
